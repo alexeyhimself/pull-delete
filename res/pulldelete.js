@@ -29,7 +29,6 @@
         btn = 2.5 * rem;
         threshold = btn / 2;
         if ($Dom instanceof jQuery && $Dom.hasClass(target_el)) {
-            console.log(1);
             $Dom.append('<i class="pd_btn"></i>');
             _this.addPullListener($Dom, callback);
         }
