@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="res/pulldelete.js"></script>
     <script>
+        /* Default button - delete */
     	$(function(){
     		$('.pull_delete').pulldelete(function($dom){
 	        	// something you want here
@@ -15,15 +16,40 @@
 	        	$dom.remove();
     		});
 		})
+
+        /* Custom button - pin */
+        $(function(){
+            const target_element = 'pull_pin';
+    		$('.' + target_element).pulldelete(function($dom){
+	        	// something you want here
+	        	console.log('click pin');
+	        	// $dom.remove();
+    		}, target_element);
+		})
     </script>
+    <style>
+        .pull_delete_css .pd_btn::before {
+            content: 'PIN';
+            font-style: normal !important;
+            font-size: 0.4rem !important;
+        }
+        .pull_delete_css .pd_btn {
+            background: blue !important;
+        }
+    </style>
 </head>
 <body>
-<div style="overflow: hidden">
-    <div class="row pull_delete">Sliding to the left can be deleted.</div>
-    <div class="row pull_delete">Sliding to the left can be deleted.</div>
-    <div class="row pull_delete">Sliding to the left can be deleted.</div>
-    <div class="row pull_delete">Sliding to the left can be deleted.</div>
-    <div class="row pull_delete">Sliding to the left can be deleted.</div>
-</div>
+    <h5>Delete</h5>
+    <div style="overflow: hidden">
+        <div class="row pull_delete">Sliding to the left can be deleted.</div>
+        <div class="row pull_delete">Sliding to the left can be deleted.</div>
+        <div class="row pull_delete">Sliding to the left can be deleted.</div>
+    </div>
+    <h5>Pin</h5>
+    <div style="overflow: hidden">
+        <div class="row pull_pin pull_delete_css">Sliding to the left can be pinned.</div>
+        <div class="row pull_pin pull_delete_css">Sliding to the left can be pinned.</div>
+        <div class="row pull_pin pull_delete_css">Sliding to the left can be pinned.</div>
+    </div>
 </body>
 </html>

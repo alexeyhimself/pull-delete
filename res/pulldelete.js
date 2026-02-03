@@ -20,12 +20,16 @@
      * @param callback
      * @constructor
      */
-    var PullDelete = function ($Dom, callback) {
+    var PullDelete = function ($Dom, callback, target_el) {
+        if (!target_el)
+            target_el = 'pull_delete';
+
         _this = this;
         rem = parseFloat($('html').css('font-size').replace('px', '')),
         btn = 2.5 * rem;
         threshold = btn / 2;
-        if ($Dom instanceof jQuery && $Dom.hasClass('pull_delete')) {
+        if ($Dom instanceof jQuery && $Dom.hasClass(target_el)) {
+            console.log(1);
             $Dom.append('<i class="pd_btn"></i>');
             _this.addPullListener($Dom, callback);
         }
@@ -82,9 +86,9 @@
     }
 
     $.fn.extend({
-        pulldelete: function(callback){
+        pulldelete: function(callback, target_el){
             this.each(function(){
-                new PullDelete($(this), callback);
+                new PullDelete($(this), callback, target_el);
             });
             return this;
         }
